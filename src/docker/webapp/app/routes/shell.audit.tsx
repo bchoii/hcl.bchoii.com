@@ -4,15 +4,19 @@ import {
   LoaderFunctionArgs,
   json,
 } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
+  const findAll = await fetch(
+    "https://a7ed-116-86-52-194.ngrok-free.app/v1/api/pms/audit/findAll"
+  ).then((r) => r.json());
   // invariant(params.id, "Missing id param");
   // return json({ id: params.id });
-  return null;
+  return { findAll };
 };
 
 export default function Component() {
-  // const { id } = useLoaderData<typeof loader>();
+  const { findAll } = useLoaderData<typeof loader>();
 
   return (
     <div className="fadein">
@@ -35,7 +39,7 @@ export default function Component() {
           <td>Placeholder</td>
         </tr>
       </table>
-      <pre>{JSON.stringify({ audit: "XXX" })}</pre>{" "}
+      <pre>{JSON.stringify(findAll, null, 2)}</pre>
     </div>
   );
 }

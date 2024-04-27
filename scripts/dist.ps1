@@ -28,12 +28,12 @@ scp -i $Pem -r dist ubuntu@${Domain}:/home/ubuntu
 
 # docker up
 # ssh -i $Pem ubuntu@$Domain "cd dist && docker compose up --detach --build --force-recreate"
-# ssh -i $Pem ubuntu@$Domain "cd dist && docker compose up webapp --detach --build --force-recreate"
+ssh -i $Pem ubuntu@$Domain "cd dist && docker compose up webapp --detach --build --force-recreate"
 # ssh -i $Pem ubuntu@$Domain "cd dist && docker compose up postgres --detach --build --force-recreate"
 # ssh -i $Pem ubuntu@$Domain "cd dist && docker compose up dozzle --detach --build --force-recreate"
 # ssh -i $Pem ubuntu@$Domain "cd dist && docker compose up whoami --detach --build --force-recreate"
 # ssh -i $Pem ubuntu@$Domain "cd dist && docker compose up caddy --detach --build --force-recreate"
-ssh -i $Pem ubuntu@$Domain "docker exec -w /etc/caddy caddy caddy reload"
+# ssh -i $Pem ubuntu@$Domain "docker exec -w /etc/caddy caddy caddy reload"
 
 # ssh -i $Pem ubuntu@$Domain "docker ps"
 # ssh -i $Pem ubuntu@$Domain "df"
