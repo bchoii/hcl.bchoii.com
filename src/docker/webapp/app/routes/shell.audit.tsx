@@ -4,7 +4,7 @@ import {
   LoaderFunctionArgs,
   json,
 } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
 
 // http://localhost:5173/shell/audit?pageNumber=1&pageSize=15
 // http://localhost:5173/shell/audit
@@ -57,23 +57,26 @@ export default function Component() {
         ))}
       </table>
       <div>
+        Page {findAll.number + 1} of {findAll.totalPages}{" "}
         {!findAll.first && (
-          <a
-            href={`?pageSize=${findAll.pageable.pageSize ?? 1}&pageNumber=${
+          <Link
+            className="button"
+            to={`?pageSize=${findAll.pageable.pageSize ?? 1}&pageNumber=${
               findAll.pageable.pageNumber ?? 1
             }`}
           >
             Prev
-          </a>
+          </Link>
         )}{" "}
         {!findAll.last && (
-          <a
-            href={`?pageSize=${findAll.pageable.pageSize ?? 1}&pageNumber=${
+          <Link
+            className="button"
+            to={`?pageSize=${findAll.pageable.pageSize ?? 1}&pageNumber=${
               (findAll.pageable.pageNumber ?? 1) + 2
             }`}
           >
             Next
-          </a>
+          </Link>
         )}
       </div>
       <pre>{JSON.stringify({ url, findAll }, null, 2)}</pre>
