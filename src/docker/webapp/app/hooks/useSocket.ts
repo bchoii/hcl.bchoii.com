@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { io, Socket } from "socket.io-client";
 
-const url = "https://echo.hcl-hackathon.bchoii.com";
+const url = "https://echo.hcl.bchoii.com";
 
 export const useSocket = (
   listener: (data: any) => void,

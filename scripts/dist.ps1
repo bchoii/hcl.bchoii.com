@@ -1,5 +1,5 @@
 $Pem = 'scripts\pem\bchoii.pem'
-$Domain = 'hcl-hackathon.bchoii.com'
+$Domain = 'hcl.bchoii.com'
 
 Set-Location $PSScriptRoot/..
 
@@ -13,8 +13,8 @@ New-Item -Path "dist" -ItemType Directory
 # ssh -i $Pem ubuntu@$Domain "sudo rm -rf dist"
 
 # clear remote dist
-# ssh -i $Pem ubuntu@$Domain "sudo rm -rf dist/webapp"
-# xcopy src\docker\* dist /s /i /exclude:scripts\dist.xcopy.exclude
+ssh -i $Pem ubuntu@$Domain "sudo rm -rf dist/webapp"
+xcopy src\docker\* dist /s /i /exclude:scripts\dist.xcopy.exclude
 
  # partial dist
 & $PSScriptRoot/dist.1.ps1
@@ -28,7 +28,7 @@ scp -i $Pem -r dist ubuntu@${Domain}:/home/ubuntu
 
 # docker up
 # ssh -i $Pem ubuntu@$Domain "cd dist && docker compose up --detach --build --force-recreate"
-ssh -i $Pem ubuntu@$Domain "cd dist && docker compose up webapp --detach --build --force-recreate"
+# ssh -i $Pem ubuntu@$Domain "cd dist && docker compose up webapp --detach --build --force-recreate"
 # ssh -i $Pem ubuntu@$Domain "cd dist && docker compose up postgres --detach --build --force-recreate"
 # ssh -i $Pem ubuntu@$Domain "cd dist && docker compose up dozzle --detach --build --force-recreate"
 # ssh -i $Pem ubuntu@$Domain "cd dist && docker compose up whoami --detach --build --force-recreate"

@@ -60,18 +60,18 @@ import configimports/*
   respond "Unauthorised {client_ip}" 403
 }
 
-whoami.hcl-hackathon.bchoii.com {
+whoami.hcl.bchoii.com {
   import dev-proxy whoami:80
 }
 
-hcl-hackathon.bchoii.com {
+hcl.bchoii.com {
   import bots
   import logging webapp
   import app-proxy webapp:3000
   # import app-proxy localhost:5173
 }
 
-drive.hcl-hackathon.bchoii.com {
+drive.hcl.bchoii.com {
   @allowed {
     client_ip 132.147.120.42 # tampines
   }
@@ -80,34 +80,34 @@ drive.hcl-hackathon.bchoii.com {
   respond "Unauthorised {client_ip}" 403
 }
 
-echo.hcl-hackathon.bchoii.com {
+echo.hcl.bchoii.com {
   import logging webapp
   @allowed not {
     path /
     method POST
     not client_ip 132.147.120.42 # tampines
-    not client_ip 54.254.62.31 # hcl-hackathon.bchoii.com
+    not client_ip 54.254.62.31 # hcl.bchoii.com
   }
   reverse_proxy @allowed echo:3000
   respond "Unauthorised {client_ip}" 403
 }
 
-dozzle.hcl-hackathon.bchoii.com {
+dozzle.hcl.bchoii.com {
   import dev-proxy dozzle:8080
 }
 
-pgweb.hcl-hackathon.bchoii.com {
+pgweb.hcl.bchoii.com {
   import dev-proxy pgweb:8081
 }
 
-glances.hcl-hackathon.bchoii.com {
+glances.hcl.bchoii.com {
   import dev-proxy glances:61208
 }
 
-cadvisor.hcl-hackathon.bchoii.com {
+cadvisor.hcl.bchoii.com {
   import dev-proxy cadvisor:8080
 }
 
-grafana.hcl-hackathon.bchoii.com {
+grafana.hcl.bchoii.com {
   import dev-proxy grafana:3000
 }

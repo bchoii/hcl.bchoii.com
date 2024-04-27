@@ -33,7 +33,7 @@ video {
 }
 
 .background {
-  opacity: 0.5;
+  opacity: 0.1;
 
   background: url("https://www.hcltech.com/sites/default/files/images/special-pages/home/01/testimonial-bg.webp")
     no-repeat;
@@ -45,8 +45,6 @@ video {
   bottom: 0;
   height: 100lvh;
   z-index: -1;
-
-  filter: blur(1px);
 }
 
 .error {

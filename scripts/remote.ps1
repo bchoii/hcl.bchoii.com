@@ -1,5 +1,5 @@
 $Pem = 'scripts\pem\bchoii.pem'
-$Domain = 'hcl-hackathon.bchoii.com'
+$Domain = 'hcl.bchoii.com'
 
 ipconfig /flushdns
 nslookup $Domain
