@@ -26,3 +26,7 @@ body {
   height: 100lvh;
   z-index: -1;
 }
+
+.m-auto {
+  margin: auto;
+}
