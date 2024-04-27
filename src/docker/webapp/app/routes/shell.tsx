@@ -40,12 +40,13 @@ export default function Shell() {
       </div> */}
 
       <div className="grid">
-        <nav className="">
-          <NavLink to="." end className="flex items-baseline">
-            <img
-              className="max-h-[1lh]"
-              src="https://www.hcltech.com/themes/custom/hcltech/images/hcltech-new-logo.svg"
-            />
+        <nav className="flex flex-nowrap overflow-x-scroll hidescrollbars">
+          <NavLink
+            className="flex items-baseline text-nowrap min-w-max"
+            to="."
+            end
+          >
+            <img className="max-h-[1lh] " src="/assets/logo.png" />
             &nbsp;
             {sitename}
           </NavLink>
