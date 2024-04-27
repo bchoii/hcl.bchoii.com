@@ -40,10 +40,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <link rel="stylesheet" href="/styles.css"></link>
       </head>
       <body>
-        <div className="bg-red-900 text-white p-2 text-center">
-          {" "}
-          -- Team 8 --{" "}
-        </div>
         {children}
         {/* <Suspense>{children}</Suspense> */}
         {/* <ClientOnly fallback={<>Loading...</>}>
