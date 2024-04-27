@@ -14,6 +14,10 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 export default function Component() {
   // const { id } = useLoaderData<typeof loader>();
 
+  function placeholder() {
+    alert("Placeholder");
+  }
+
   return (
     <div className="fadein">
       <input type="search" placeholder="Search..."></input>
@@ -36,7 +40,7 @@ export default function Component() {
           <td>Bond / Digital Asset / Real Estate</td>
 
           <td>
-            <button> - </button>
+            <button onClick={placeholder}> - </button>
           </td>
         </tr>
       </table>
