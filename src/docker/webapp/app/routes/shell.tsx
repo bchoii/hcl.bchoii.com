@@ -44,7 +44,7 @@ export default function Shell() {
           <NavLink to="." end className="flex items-baseline">
             <img
               className="max-h-[1lh]"
-              src="https://hcl.com/wp-content/themes/Hcl/img/logo.png"
+              src="https://www.hcltech.com/themes/custom/hcltech/images/hcltech-new-logo.svg"
             />
             &nbsp;
             {sitename}

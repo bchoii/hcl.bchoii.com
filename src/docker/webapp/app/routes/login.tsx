@@ -22,7 +22,7 @@ export default function Login() {
     <div className="m-auto">
       <h3>
         <a href="/">
-          <img src="https://hcl.com/wp-content/themes/Hcl/img/logo.png" />
+          <img src="https://www.hcltech.com/themes/custom/hcltech/images/hcltech-new-logo.svg" />
           Login
         </a>
       </h3>

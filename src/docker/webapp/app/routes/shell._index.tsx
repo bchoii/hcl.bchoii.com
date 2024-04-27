@@ -18,8 +18,27 @@ export default function Component() {
   const { user } = useLoaderData<typeof loader>();
   return (
     <div className="fadein">
-      Welcome <span className="font-bold">{user.email}</span> to{" "}
-      <span className="font-bold">{sitename}</span>.
+      Welcome <span className="font-bold">{user.email}</span> .
+      <Link
+        className="block relative"
+        to="https://www.hcltech.com/events/hackathon"
+      >
+        <div className="absolute">
+          <img src="https://www.hcltech.com/sites/default/files/images/event/bjb-hackathon/1440x500.webp"></img>
+        </div>
+        <div className="absolute text-white p-10">
+          <span className="text-5xl">
+            Calling all experts :<br></br>Hackathon alert
+          </span>
+          <br></br>
+          <br></br>
+          <p>
+            One opportunity. Limitless possibilities.
+            <br></br>
+            April 27, 2024
+          </p>
+        </div>
+      </Link>
     </div>
   );
 }

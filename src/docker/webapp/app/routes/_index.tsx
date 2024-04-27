@@ -11,7 +11,7 @@ import { sitename } from "../utils/constants";
 export default function Component() {
   return (
     <Link className="m-auto" to="shell" target="_blank">
-      <img src="https://hcl.com/wp-content/themes/Hcl/img/logo.png" />
+      <img src="https://www.hcltech.com/themes/custom/hcltech/images/hcltech-new-logo.svg" />
       {sitename}
     </Link>
   );

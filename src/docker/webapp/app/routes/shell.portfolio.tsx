@@ -8,14 +8,21 @@ import { Form, NavLink, Outlet, useLoaderData } from "@remix-run/react";
 
 import { useRef } from "react";
 
-export const loader = async ({ params }: LoaderFunctionArgs) => {
-  // invariant(params.id, "Missing id param");
-  // return json({ id: params.id });
-  return null;
+// http://localhost:5173/shell/portfolio
+
+export const loader = async ({ request, params }: LoaderFunctionArgs) => {
+  const { searchParams } = new URL(request.url);
+
+  const url =
+    "http://62b2-116-86-52-194.ngrok-free.app/api/portfolios?" +
+    searchParams.toString();
+
+  const findAll = await fetch(url).then((r) => r.json());
+  return { url, findAll };
 };
 
 export default function Component() {
-  // const { id } = useLoaderData<typeof loader>();
+  const { url, findAll } = useLoaderData<typeof loader>();
   const dialog = useRef<HTMLDialogElement>(null);
 
   function showDialog() {
@@ -109,7 +116,7 @@ export default function Component() {
           </div>
         </div>
       </dialog>
-      <pre>{JSON.stringify({ portfolio: "XXX" })}</pre>{" "}
+      <pre>{JSON.stringify({ url, findAll }, null, 2)}</pre>
     </div>
   );
 }
