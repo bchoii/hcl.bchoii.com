@@ -1,0 +1,63 @@
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: 50m
+    max-file: 1
+
+services:
+  caddy:
+    container_name: caddy
+    image: caddy:2.7.6-alpine
+    logging: *default-logging
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - $PWD/caddy/:/etc/caddy/
+      - $PWD/caddy/data:/data
+      - $PWD/caddy/config:/config
+      - $PWD/caddy/log:/var/log
+      - $PWD/cron/output:/etc/caddy/configimports
+    # network_mode: "host"
+
+  whoami:
+    container_name: whoami
+    image: traefik/whoami:v1.10.1
+    restart: unless-stopped
+
+  webapp:
+    container_name: webapp
+    build:
+      context: ./webapp
+    logging: *default-logging
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PGUSER: postgres
+      PGHOST: postgres
+      PGPASSWORD: jNPyNcPpidzWBRUdJAkT58YpWoYFqBBz
+
+  postgres:
+    container_name: postgres
+    image: postgres:16.2-alpine3.19
+    logging: *default-logging
+    environment:
+      POSTGRES_PASSWORD: jNPyNcPpidzWBRUdJAkT58YpWoYFqBBz
+      TZ: Asia/Singapore # onnewsite
+    restart: unless-stopped
+    ports:
+      - "5432:5432" # expose port
+    volumes:
+      - $PWD/postgres_data_16:/var/lib/postgresql/data
+      - $PWD/postgres/docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
+
+  dozzle:
+    container_name: dozzle
+    image: amir20/dozzle:v6.4.0
+    logging: *default-logging
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      DOZZLE_NO_ANALYTICS: true

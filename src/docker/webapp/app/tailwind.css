@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  nav {
+    @apply flex flex-wrap *:px-4 *:py-2 items-baseline border-b-4;
+  }
+
+  .active {
+    @apply ring ring-inset;
+  }
+}

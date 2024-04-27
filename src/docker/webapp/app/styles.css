@@ -1,0 +1,88 @@
+@keyframes fadein {
+  from {
+    opacity: 0;
+    translate: 0 20px;
+  }
+  to {
+  }
+}
+
+.fadein {
+  animation: fadein 300ms;
+}
+
+button {
+  padding: 3px 20px;
+  border: 1px solid black;
+  background: #cccc;
+  border-radius: 3px;
+}
+
+table td {
+  vertical-align: baseline;
+}
+
+table {
+  border-spacing: 0;
+  border: 1px solid #ccc;
+}
+
+table th {
+  font-size: 0.7rem;
+  color: #888;
+  text-transform: uppercase;
+}
+
+table th,
+table td {
+  padding: 5px 10px;
+  border-bottom: 1px solid #eee;
+}
+
+table {
+  counter-reset: rowNumber;
+}
+
+table tr > td:first-child {
+  counter-increment: rowNumber;
+}
+
+@media (width > 640px) {
+  table tr > td:first-child {
+    text-align: end;
+  }
+}
+
+table tr td:first-child::before {
+  content: counter(rowNumber) ". ";
+}
+
+input,
+select {
+  border: 1px solid black;
+  padding-inline: 20px;
+  padding-block: 5px;
+}
+
+input[type="search"] {
+  border-radius: 1lh;
+}
+
+dialog {
+  padding: 20px;
+  border: 1px solid black;
+}
+
+label {
+  margin-inline: 10px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 1em;
+  border-bottom: 1px solid #333;
+}

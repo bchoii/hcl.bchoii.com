@@ -1,0 +1,15 @@
+{
+  "short_name": "MyApp",
+  "name": "My Application",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fff",
+  "icons": [
+    {
+      "src": "assets/512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

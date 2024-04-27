@@ -1,0 +1,54 @@
+html {
+  scrollbar-width: thin;
+
+  /* scroll-behavior: smooth; */
+
+  min-height: 100%;
+  display: grid;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+img,
+picture,
+video {
+  max-width: 100%;
+}
+
+.m-auto {
+  margin: auto;
+}
+
+.hidescrollbars::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hidescrollbars {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.background {
+  opacity: 0.5;
+
+  background: url("https://www.hcltech.com/sites/default/files/images/special-pages/home/01/testimonial-bg.webp")
+    no-repeat;
+  background-size: cover;
+  background-position: bottom;
+
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  height: 100lvh;
+  z-index: -1;
+
+  filter: blur(1px);
+}
+
+.error {
+  color: red;
+}

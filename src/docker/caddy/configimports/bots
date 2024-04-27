@@ -1,0 +1,6 @@
+(bots) {
+  @bots {
+    client_ip 192.0.2.1
+  }
+  abort @bots
+}
