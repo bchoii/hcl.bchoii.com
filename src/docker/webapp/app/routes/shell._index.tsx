@@ -23,9 +23,10 @@ export default function Component() {
         className="block relative"
         to="https://www.hcltech.com/events/hackathon"
       >
-        <div className="absolute">
-          <img src="https://www.hcltech.com/sites/default/files/images/event/bjb-hackathon/1440x500.webp"></img>
-        </div>
+        <img
+          className="absolute"
+          src="https://www.hcltech.com/sites/default/files/images/event/bjb-hackathon/1440x500.webp"
+        ></img>
         <div className="absolute text-white p-10">
           <span className="text-5xl">
             Calling all experts :<br></br>Hackathon alert

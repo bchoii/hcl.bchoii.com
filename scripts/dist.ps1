@@ -13,8 +13,8 @@ New-Item -Path "dist" -ItemType Directory
 # ssh -i $Pem ubuntu@$Domain "sudo rm -rf dist"
 
 # clear remote dist
-ssh -i $Pem ubuntu@$Domain "sudo rm -rf dist/webapp"
-xcopy src\docker\* dist /s /i /exclude:scripts\dist.xcopy.exclude
+# ssh -i $Pem ubuntu@$Domain "sudo rm -rf dist/webapp"
+# xcopy src\docker\* dist /s /i /exclude:scripts\dist.xcopy.exclude
 
  # partial dist
 & $PSScriptRoot/dist.1.ps1

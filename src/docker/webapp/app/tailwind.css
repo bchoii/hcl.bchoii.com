@@ -7,8 +7,8 @@
     @apply flex flex-wrap *:px-4 *:py-2 items-baseline border-b-4;
   }
 
-  .button {
-    @apply border p-2 bg-slate-300;
+  button {
+    @apply border rounded px-2 bg-slate-200 hover:outline;
   }
 
   .active {

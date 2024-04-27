@@ -2,11 +2,12 @@ import {
   ActionFunctionArgs,
   LinksFunction,
   LoaderFunctionArgs,
+  defer,
   json,
 } from "@remix-run/node";
-import { Form, NavLink, Outlet, useLoaderData } from "@remix-run/react";
+import { Await, Form, NavLink, Outlet, useLoaderData } from "@remix-run/react";
 
-import { useRef } from "react";
+import { Suspense, useRef } from "react";
 
 // http://localhost:5173/shell/portfolio
 
@@ -17,8 +18,8 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
     "http://62b2-116-86-52-194.ngrok-free.app/api/portfolios?" +
     searchParams.toString();
 
-  const findAll = await fetch(url).then((r) => r.json());
-  return { url, findAll };
+  const findAll = fetch(url).then((r) => r.json());
+  return defer({ url, findAll });
 };
 
 export default function Component() {
@@ -41,28 +42,38 @@ export default function Component() {
           Add Trade
         </button>
       </div>
-      <table>
-        <tr>
-          <th></th>
-          <th>Customer Name ⌄</th>
-          <th>Portfolio Number ⌃</th>
-          <th>Portfolio Value</th>
-          <th>Current Performance</th>
-          <th>Investment Strategy</th>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Placeholder</td>
-          <td>Placeholder</td>
-          <td>$43,213</td>
-          <td className="bg-green-100">23.4%</td>
-          <td>
-            <span className="bg-green-100">Safe</span> /{" "}
-            <span className="bg-orange-100">Moderate</span> /{" "}
-            <span className="bg-red-100">Risky</span>
-          </td>
-        </tr>
-      </table>
+
+      <Suspense fallback={<>Loading...</>}>
+        <Await resolve={findAll}>
+          {(findAll) => (
+            <>
+              <table>
+                <tr>
+                  <th></th>
+                  <th>Customer Name ⌄</th>
+                  <th>Portfolio Number ⌃</th>
+                  <th>Portfolio Value</th>
+                  <th>Current Performance</th>
+                  <th>Investment Strategy</th>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Placeholder</td>
+                  <td>Placeholder</td>
+                  <td>$43,213</td>
+                  <td className="bg-green-100">23.4%</td>
+                  <td>
+                    <span className="bg-green-100">Safe</span> /{" "}
+                    <span className="bg-orange-100">Moderate</span> /{" "}
+                    <span className="bg-red-100">Risky</span>
+                  </td>
+                </tr>
+              </table>
+            </>
+          )}
+        </Await>
+      </Suspense>
+
       <dialog ref={dialog}>
         <div className="grid gap-2">
           <div
@@ -124,3 +135,31 @@ export default function Component() {
 export const action = async ({ request, params }: ActionFunctionArgs) => {
   return null;
 };
+
+import { isRouteErrorResponse, useRouteError } from "@remix-run/react";
+
+export function ErrorBoundary() {
+  const error = useRouteError();
+
+  if (isRouteErrorResponse(error)) {
+    return (
+      <div>
+        <h1>
+          {error.status} {error.statusText}
+        </h1>
+        <p>{error.data}</p>
+      </div>
+    );
+  } else if (error instanceof Error) {
+    return (
+      <div>
+        <h1>Error</h1>
+        <p>{error.message}</p>
+        <p>The stack trace is:</p>
+        <pre>{error.stack}</pre>
+      </div>
+    );
+  } else {
+    return <h1>Unknown Error</h1>;
+  }
+}
